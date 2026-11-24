@@ -1,0 +1,42 @@
+/* Identidade A, versão pergaminho (23/11/2026): fundo e cores tirados das referências escolhidas pela Samara
+   (00_Marca/Referencias): pergaminho #FCE2B5, ouro da moldura #C7984F, azul do tecido estrelado #313850, vinho da vela. */
+:root {
+  --chao: #FCE2B5;
+  --tinta: #2A1B12;
+  --tinta-2: #5C4632;
+  --titulo-cor: #5A1A2B;
+  --destaque-claro: #9A6F27;
+  --forma: #5A1A2B;
+  --carta-fundo: #F3E9D2;
+  --botao-fundo: #5A1A2B;
+  --botao-tinta: #F3E9D2;
+  --botao-hover: #313850;
+  /* botões do WhatsApp: verde do símbolo do WhatsApp */
+  --wa-fundo: #25D366;
+  --wa-hover: #1EBE5D;
+  --wa-tinta: #0E0B16;
+  --wa-icone: #FFFFFF;
+  --foco: #5A1A2B;
+  --fonte-titulo: 'Cinzel', 'Times New Roman', serif;
+  --fonte-texto: 'Lato', system-ui, sans-serif;
+  --titulo-peso: 400;
+  --h1-tam: clamp(44px, 3.9cqw, 64px);
+  --h1-tam-cel: min(7.6cqw, 56px);
+  --h1-linha: 1.08;
+  --h1-track: -0.01em;
+  --marca-cor: #5A1A2B;
+  --marca-fonte: 600 14px/1 'Cinzel', serif;
+  --marca-track: 0.01em;
+  --convite-fonte: 400 22px/1.3 'Cinzel', serif;
+  --chao-2: #F4D6A2;
+  --campo: #5A1A2B; --campo-tinta: #F3E9D2; --campo-titulo: #E8D29A;
+  --faixa: #313850; --faixa-tinta: #F3E9D2; --faixa-titulo: #E8D29A; --faixa-estrela: #C7984F;
+  --painel: #5A1A2B; --painel-tinta: #F3E9D2; --painel-titulo: #E8D29A;
+  --rodape: transparent; --rodape-tinta: #2A1B12; --rodape-tinta-2: #5C4632; --rodape-titulo: #5A1A2B;
+  --marcador: #C7984F;
+  --raio-carta: 10px;
+  --h2-tam: clamp(30px, 2.7cqw, 40px); --h2-tam-cel: 22px; --h2-linha: 1.18; --h2-track: 0;
+  --h3-tam: 22px; --h3-track: 0.01em;
+  --romano-fonte: 600 44px/1 'Cinzel', serif;
+  --rodape-marca-fonte: 400 clamp(26px, 6.2cqw, 92px)/1 'Cinzel', serif;
+}

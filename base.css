@@ -1,0 +1,135 @@
+/* Layout da landing, feito só para celular. Numa tela grande, a página aparece como uma coluna de celular no centro.
+   Cores e fontes vêm de tema-a.css. As medidas em cqw são relativas à largura dessa coluna. */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; background: #313850; }
+body {
+  margin: 0;
+  /* pergaminho com a moldura dourada das referências: luas no topo, linhas da moldura nas laterais */
+  background:
+    url("fotos/fundo/topo.webp") top center / 100% auto no-repeat,
+    url("fotos/fundo/lado.webp") top center / 100% auto repeat-y,
+    var(--chao);
+  color: var(--tinta);
+  font: 400 17px/1.55 var(--fonte-texto);
+  overflow-x: clip;
+  max-width: 480px; margin: 0 auto; position: relative;
+  container-type: inline-size;
+}
+img { display: block; max-width: 100%; height: auto; }
+p { margin: 0; }
+h1, h2, h3 { margin: 0; font-family: var(--fonte-titulo); font-weight: var(--titulo-peso); color: var(--titulo-cor); }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--foco); outline-offset: 3px; }
+::selection { background: var(--destaque-claro); color: var(--chao); }
+
+:root {
+  --margem: 7cqw;          /* fica por dentro dos arabescos da moldura */
+  --raio: 6px;          /* canto de carta: botões, cartas, formas */
+  --barra-alt: 76px;
+}
+
+.pular { position: absolute; left: -9999px; top: 8px; z-index: 20; background: var(--botao-fundo); color: var(--botao-tinta); padding: 10px 14px; }
+.pular:focus { left: 8px; }
+
+/* ---------- Botão: um formato só, canto de carta ---------- */
+.botao {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 56px; padding: 0 28px;
+  gap: 10px;
+  background: var(--wa-fundo); color: var(--wa-tinta);
+  border-radius: var(--raio);
+  font: 700 17px/1.1 var(--fonte-texto); text-decoration: none; text-align: center;
+  transition: transform .18s ease, background-color .18s ease;
+}
+.botao:hover { background: var(--wa-hover); }
+.icone-wa { width: 1.35em; height: 1.35em; flex: none; fill: var(--wa-icone); transition: transform .25s cubic-bezier(.2,.7,.2,1); }
+.botao:hover .icone-wa { transform: rotate(-10deg) scale(1.08); }
+.botao:active { transform: translateY(2px); }
+
+/* ---------- Barra ---------- */
+.barra {
+  position: absolute; inset: 0 0 auto 0; z-index: 5;
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  height: var(--barra-alt); padding: 0 var(--margem);
+}
+.barra { justify-content: center; top: 10cqw; }   /* o nome fica logo abaixo das luas do topo */
+.marca { text-decoration: none; color: var(--marca-cor); font: var(--marca-fonte); letter-spacing: var(--marca-track); white-space: nowrap; }
+.marca__ponto { color: var(--destaque-claro); }
+.barra__nav { display: flex; align-items: center; gap: 28px; }
+.barra__nav a:not(.botao) { text-decoration: none; font-size: 15px; color: var(--tinta); text-underline-offset: 6px; text-decoration-thickness: 2px; }
+.barra__nav a:not(.botao):hover { text-decoration: underline; text-decoration-color: var(--destaque-claro); }
+.botao--barra { min-height: 44px; padding: 0 20px; font-size: 15px; }
+
+/* ---------- Abertura (primeira dobra) ---------- */
+.abertura {
+  position: relative; overflow: hidden;
+  min-height: 100svh;
+  display: grid;
+  grid-template-columns: minmax(0, 52%) 1fr;
+  grid-template-areas: "topo mesa" "resto mesa";
+  grid-template-rows: auto 1fr;
+  column-gap: 3cqw;
+  padding: calc(var(--barra-alt) + 7svh) var(--margem) 8svh;
+}
+.abertura__topo { grid-area: topo; position: relative; z-index: 2; }
+.abertura__resto { grid-area: resto; position: relative; z-index: 2; display: grid; gap: 18px; align-content: start; justify-items: start; margin-top: 22px; max-width: 34em; }
+.abertura h1 { font-size: var(--h1-tam); line-height: var(--h1-linha); letter-spacing: var(--h1-track); }
+.abertura__lead { margin-top: 28px; font-size: 20px; line-height: 1.5; max-width: 30em; }
+.abertura__convite { font: var(--convite-fonte); color: var(--titulo-cor); }
+.abertura__nota { color: var(--tinta-2); }
+.abertura__resto .botao { margin-top: 10px; }
+
+/* A mesa: a forma de carta em tamanho enorme, cortada pela tela, e O Louco por cima */
+.abertura__mesa { grid-area: mesa; position: relative; z-index: 1; }
+.forma {
+  position: absolute;
+  height: 150svh; aspect-ratio: 554 / 900;
+  left: 44%; top: 3svh;
+  transform: rotate(8deg);
+  /* o verso da carta do baralho da Samara (recortado da foto das mãos na mesa) */
+  background: url("fotos/fundo/verso-carta.webp") center / cover no-repeat var(--forma);
+  border-radius: 2.6svh;
+}
+.carta {
+  position: absolute;
+  height: 104svh; aspect-ratio: 1144 / 1919;
+  left: 2%; top: -3svh;
+  transform: rotate(-4deg);
+  border-radius: 1.4svh; overflow: hidden;
+  background: var(--carta-fundo);
+  animation: obturador 1.1s cubic-bezier(.2,.7,.2,1) .15s both;
+}
+.carta img { width: 100%; height: 100%; object-fit: cover; animation: assenta 1.4s cubic-bezier(.2,.7,.2,1) .15s both; }
+@keyframes obturador { from { clip-path: inset(100% 0 0 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes assenta { from { transform: scale(1.12); } to { transform: scale(1); } }
+
+.cta-fixo { display: none; }
+
+/* ---------- Celular: layout único, vale em qualquer tela ---------- */
+:root { --barra-alt: 60px; }
+.barra__nav a:not(.botao) { display: none; }
+.botao--barra { display: none; }
+.abertura {
+  display: block; min-height: 0;
+  padding: calc(var(--barra-alt) + 10cqw + 12px) var(--margem) 40px;
+}
+.abertura h1 { font-size: var(--h1-tam-cel); }
+.abertura__lead { margin-top: 18px; font-size: 18px; }
+.abertura__mesa { height: 124cqw; margin: 26px calc(-1 * var(--margem)) 8px; }
+.forma { height: 100cqw; left: 36%; top: 2cqw; transform: rotate(9deg); border-radius: 3cqw; }
+.carta { height: 104cqw; left: 13%; top: 6cqw; }
+.abertura__resto { margin-top: 8px; }
+.abertura__resto .botao { width: 100%; }
+.cta-fixo {
+  display: flex; position: fixed; z-index: 10; bottom: 12px;
+  /* acompanha a coluna de 480px quando a tela é maior */
+  left: calc(max(0px, (100vw - 480px) / 2) + 12px); right: calc(max(0px, (100vw - 480px) / 2) + 12px);
+  transition: transform .3s ease, opacity .3s ease;
+}
+.cta-fixo.escondido { transform: translateY(140%); opacity: 0; pointer-events: none; }
+body { padding-bottom: 0; } /* a faixa ilustrada do rodapé fecha a página */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0s !important; transition-duration: .01ms !important; }
+  html { scroll-behavior: auto; }
+}
